@@ -1,29 +1,6 @@
 <?php include('includes/header.php'); ?>
-
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div class="mb-3">
-        <br />
-        <h3>Inicio de sesión</h3>
-        <label class="form-label"> Correo electronico </label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Correo electronico"
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label"> Contraseña </label>
-        <input
-          type="text"
-          class="form-control"
-          id="formGroupExampleInput2"
-          placeholder="Contraseña"
-        />
-      </div>
-    </div>
-
     <div class="col">
       <div class="mb-3">
         <br />
@@ -62,16 +39,16 @@
             />
           </div>
           <div class="col-12">
-            <label for="inputAddress" class="form-label">RFC</label>
+            <label for="inputAddress" class="form-label">CURP</label>
             <input
               type="text"
               class="form-control"
               id="inputAddress"
-              placeholder="Ingresa tu RFC - 12 digitos"
+              placeholder="Ingresa tu CURP - 18 digitos"
             />
           </div>
           <div class="col-12">
-            <label for="inputAddress2" class="form-label">Dirección</label>
+            <label for="inputAddress2" class="form-label">Dirección 2</label>
             <input
               type="text"
               class="form-control"
@@ -103,3 +80,4 @@
     </div>
   </div>
 </div>
+

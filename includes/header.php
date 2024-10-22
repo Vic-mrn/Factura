@@ -14,7 +14,7 @@
     />
     <!-- BOOTSTRAP 5 (OFFLINE)-->
     <link rel="stylesheet" href="./css/bootstrap.css">
-	<script src="./js/jquery-3.6.0.js"></script>
+	  <script src="./js/jquery-3.6.0.js"></script>
     <script src="./js/bootstrap.js"></script>
   </head>
   <body>
@@ -31,7 +31,7 @@
             <a class="nav-link" href="alumnos.php">Alumnos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Padres</a>
+            <a class="nav-link" href="padres.php">Padres</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Enlace</a>

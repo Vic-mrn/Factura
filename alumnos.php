@@ -1,65 +1,62 @@
 <?php include('includes/header.php'); ?>
-prueba
 <div class="container">
   <div class="row">
     <div class="col">
       <div class="mb-3">
         <br />
-        <h3>Inicio de sesión</h3>
-        <label class="form-label"> Correo electronico </label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Correo electronico"
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label"> Contraseña </label>
-        <input
-          type="text"
-          class="form-control"
-          id="formGroupExampleInput2"
-          placeholder="Contraseña"
-        />
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="mb-3">
-        <br />
-        <h3>¿No tienes cuenta?, Registrate</h3>
+        <h3>Registro de alumno</h3>
         <form class="row g-3">
-          <div class="col-12">
-            <label for="inputEmail4" class="form-label"
-              >Correo electronico</label
+
+          <!-- Nombre -->
+          <div class="col-4">
+            <label class="form-label"
+              >Nombre(s)</label
             >
             <input
-              type="email"
+              type="text"
               class="form-control"
-              id="inputEmail4"
-              placeholder="Correo electronico"
             />
           </div>
 
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Contraseña</label>
+          <div class="col-4">
+            <label class="form-label"
+              >Apellido paterno</label
+            >
             <input
-              type="password"
+              type="text"
               class="form-control"
-              id="inputPassword4"
+            />
+          </div>
+
+          <div class="col-4">
+            <label class="form-label"
+              >Apellido materno</label
+            >
+            <input
+              type="text"
+              class="form-control"
+            />
+          </div>
+
+          <!--  -->
+          <div class="col-md-6">
+            <label class="form-label">Contraseña</label>
+            <input
+              class="form-control"
               placeholder="Contraseña"
             />
           </div>
+
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label"
               >Repetir contraseña</label
             >
             <input
-              type="password"
               class="form-control"
-              id="inputPassword4"
               placeholder="Repetir contraseña"
             />
+
+
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">CURP</label>
@@ -103,3 +100,27 @@ prueba
     </div>
   </div>
 </div>
+
+
+
+<div class="col">
+      <div class="mb-3">
+        <br />
+        <h3>Inicio de sesión</h3>
+        <label class="form-label"> Correo electronico </label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Correo electronico"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label"> Contraseña </label>
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupExampleInput2"
+          placeholder="Contraseña"
+        />
+      </div>
+    </div>
