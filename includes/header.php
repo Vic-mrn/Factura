@@ -19,25 +19,20 @@
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      
         <ul class="nav">
           <li class="nav-item">
-            <a class="navbar-brand" href="index.php">Portal Factura</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Administrativo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="alumnos.php">Alumnos</a>
+            <a class="navbar-brand" href="portal.php">Portal Factura</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="padres.php">Padres</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Enlace</a>
+            <a class="nav-link" href="alumnos.php">Alumnos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Generar Factura</a>
           </li>
         </ul>
-    
     </nav>
   </body>
 </html>

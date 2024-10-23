@@ -1,69 +1,38 @@
-<?php include("DB/db.php"); ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PHP CRUD MYSQL</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <!-- BOOTSTRAP 5 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <!-- BOOTSTRAP 5 (OFFLINE)-->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+	  <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./js/bootstrap.js"></script>
+  </head>
+  <body>
 
-<?php include('includes/header.php'); ?>
-
-<main class="container p-4">
-  <div class="row">
-    <div class="col-md-4">
-      <!-- MESSAGES -->
-
-      <?php if (isset($_SESSION['message'])) { ?>
-      <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message']?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php session_unset(); } ?>
-
-      <!-- ADD TASK FORM -->
-      <div class="card card-body">
-        <form action="save_task.php" method="POST">
-          <div class="form-group">
-            <input type="text" name="title" class="form-control" placeholder="Task Title" autofocus>
-          </div>
-          <div class="form-group">
-            <textarea name="description" rows="2" class="form-control" placeholder="Task Description"></textarea>
-          </div>
-          <input type="submit" name="save_task" class="btn btn-success btn-block" value="Save Task">
-        </form>
-      </div>
+<div class="container p-4">
+    <div class="row justify-content-around">
+        <div class="col-7 p-4 rounded text-body-emphasis bg-body-secondary">
+            <div class="display-6"> Inicio de sesion</div>
+            <br><br>
+            <div class="col-md-6 justify-content-around">
+                <label class="form-label">Correo electronico</label>
+                <input class="form-control" placeholder="" />
+            </div>
+            <div class="col-md-6 justify-content-around">
+                <label for="inputPassword4" class="form-label">Contraseña</label>
+                <input class="form-control" placeholder="" />
+            </div>
+            <a href="portal.php"><button type="submit" class="btn btn-primary col-12">Ingresar</button></a>
+        </div>
     </div>
-    <div class="col-md-8">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created At</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php
-          $query = "SELECT * FROM task";
-          $result_tasks = mysqli_query($conn, $query);    
-
-          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-          <tr>
-            <td><?php echo $row['title']; ?></td>
-            <td><?php echo $row['description']; ?></td>
-            <td><?php echo $row['created_at']; ?></td>
-            <td>
-              <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
-                <i class="fas fa-marker"></i>
-              </a>
-              <a href="delete_task.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-                <i class="far fa-trash-alt"></i>
-              </a>
-            </td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</main>
-
-<?php include('includes/footer.php'); ?>
+</div>
