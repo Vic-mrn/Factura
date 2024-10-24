@@ -42,10 +42,25 @@ CREATE TABLE Administrativos(
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   Usuario VARCHAR(255) NOT NULL,
   Contrasenia VARCHAR(255) NOT NULL,
-  Nombre VARCHAR(255) NOT NULL,
-  CodigoPostal VARCHAR(19) NOT NULL,
+  NombreCompleto VARCHAR(255) NOT NULL,
+  Permisos VARCHAR(255) NOT NULL,
   FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE Bitacora(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  Usuario VARCHAR(255) NOT NULL,
+  Accion VARCHAR(255) NOT NULL,
+  
+  
+);
+
+--DAR DE ALTA USUARIOS, DIRECTOR Y CONTADOR
+INSERT INTO tu_tabla (Usuario, Contrasenia, NombreCompleto, Permisos) 
+VALUES 
+('Director', 'admin1234', 'Luis Gomez Hernandez', 'admin'),
+('Contador', 'user1234', 'Luis Perez Prado', 'usuario');
+
 
 CREATE TABLE Factura(
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
