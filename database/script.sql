@@ -51,12 +51,12 @@ CREATE TABLE Bitacora(
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   Usuario VARCHAR(255) NOT NULL,
   Accion VARCHAR(255) NOT NULL,
-  
-  
+  Fecha DATE NOT NULL DEFAULT CURRENT_DATE,
+  Hora TIME NOT NULL DEFAULT CURRENT_TIME
 );
 
 --DAR DE ALTA USUARIOS, DIRECTOR Y CONTADOR
-INSERT INTO tu_tabla (Usuario, Contrasenia, NombreCompleto, Permisos) 
+INSERT INTO Administrativos (Usuario, Contrasenia, NombreCompleto, Permisos) 
 VALUES 
 ('Director', 'admin1234', 'Luis Gomez Hernandez', 'admin'),
 ('Contador', 'user1234', 'Luis Perez Prado', 'usuario');
