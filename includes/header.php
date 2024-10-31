@@ -24,7 +24,7 @@
             <a class="navbar-brand" href="portal.php">Portal Factura</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="padres.php">Padres</a>
+            <a class="nav-link" href="subcarpetas/padres/MenuP.php">Padres</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="alumnos.php">Alumnos</a>
