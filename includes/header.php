@@ -71,7 +71,7 @@
                     <a class="nav-link color" href="MenuP.php">Padres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link color" href="alumnos.php">Alumnos</a>
+                    <a class="nav-link color" href="MenuA.php">Alumnos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link color" href="#">Generar Factura</a>

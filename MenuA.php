@@ -35,7 +35,7 @@ include("DB/db.php");
                             <div class="col">
                                 <div class="mb-3">
                                     <br />
-                                    <h3>Registro de padres</h3>
+                                    <h3>Registro de alumno</h3>
                                     <form class="row g-3" method="POST">
                                         <!-- Nombre -->
                                         <div class="col-4">
@@ -54,46 +54,47 @@ include("DB/db.php");
                                         </div>
 
                                         <!--  -->
-                                        <div class="col-md-6">
-                                            <label class="form-label">Direccion</label>
-                                            <input class="form-control" placeholder="Ingresa tu direccion"
-                                                name="direccion" />
+                                        <div class="col-1">
+                                            <label for="inputAddress" class="form-label">Edad</label>
+                                            <input type="date" class="form-control" name="edad"
+                                                min="2009-01-01" required>
                                         </div>
-
-                                        <div class="col-md-6">
-                                            <label for="inputPassword4" class="form-label">Codigo postal</label>
-                                            <input class="form-control" placeholder="Ingresa tu codigo postal"
-                                                name="cp" />
-                                        </div>
-
-                                        <!--  -->
-
-                                        <div class="col-2">
-                                            <label for="birthdate">Fecha de Nacimiento</label>
-                                            <input type="date" class="form-control" name="edad" min="1960-01-01"
-                                                required>
-                                        </div>
-                                        <div class="col-4">
-                                            <label class="form-label">RFC</label>
-                                            <input type="text" class="form-control" name="rfc" />
+                                        <div class="col-5">
+                                            <label class="form-label">CURP</label>
+                                            <input type="text" class="form-control" name="curp" />
                                         </div>
 
                                         <!--  -->
-                                        <div class="col-md-6">
-                                            <label class="form-label">Regimen fiscal</label>
-                                            <select class="form-select" name="regimen">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Nivel educativo</label>
+                                            <select class="form-select" name="nivel">
                                                 <option selected>Elige alguna opcion</option>
-                                                <option>Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
-                                                <option>Simplificado de Confianza</option>
-                                                <option>Persona Física con Actividad Empresarial</option>
+                                                <option>Preescolar</option>
+                                                <option>Primaria</option>
+                                                <option>Secundaria</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Grado</label>
+                                            <select class="form-select" name="grado">
+                                                <option selected>Elige alguna opcion</option>
+                                                <option>1ro</option>
+                                                <option>2do</option>
+                                                <option>3ro</option>
+                                                <option>4to</option>
+                                                <option>5to</option>
+                                                <option>6to</option>
                                             </select>
                                         </div>
 
                                         <div class="col-12">
-                                            <input type="submit" class="btn btn-primary" value="Registrar padre"
-                                                name="btnRegistrarPadre" />
+                                            <input type="submit" class="btn btn-primary" value="Registrar alumno"
+                                                name="btnRegistrarAlumno" />
                                         </div>
-                                        <?php include('BD_CRUD/InsertarP.php'); ?>
+
+                                        <?php include('BD_CRUD/InsertarA.php'); ?>
+
                                     </form>
                                 </div>
                             </div>
@@ -104,7 +105,7 @@ include("DB/db.php");
                 <div class="tab-pane fade" id="consult" role="tabpanel" aria-labelledby="consult-tab">
                     <br>
 
-                    <h3>Consultar padres</h3>
+                    <h3>Consultar alumnos</h3>
                     <div class="col-md-12">
                         <table class="table table-bordered">
                             <thead>
@@ -113,17 +114,16 @@ include("DB/db.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Direccion</th>
-                                    <th>CP</th>
-                                    <th>Fecha de nacimiento</th>
-                                    <th>RFC</th>
-                                    <th>Regimen fiscal</th>
+                                    <th>Edad</th>
+                                    <th>CURP</th>
+                                    <th>NivelEducativo</th>
+                                    <th>Grado</th>
                                     <!-- <th>Matricula</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM padres";
+                                $query = "SELECT * FROM alumnos";
                                 $result_tasks = mysqli_query($conn, $query);
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -132,11 +132,10 @@ include("DB/db.php");
                                     <td><?php echo $row['Nombre']; ?></td>
                                     <td><?php echo $row['ApellidoP']; ?></td>
                                     <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Direccion']; ?></td>
-                                    <td><?php echo $row['CP']; ?></td>
                                     <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['RFC']; ?></td>
-                                    <td><?php echo $row['RegimenFiscal']; ?></td>
+                                    <td><?php echo $row['CURP']; ?></td>
+                                    <td><?php echo $row['NivelEducativo']; ?></td>
+                                    <td><?php echo $row['Grado']; ?></td>
                                     <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                 </tr>
                                 <?php } ?>
@@ -147,7 +146,7 @@ include("DB/db.php");
                 <!-- Modificar -->
                 <div class="tab-pane fade" id="modify" role="tabpanel" aria-labelledby="modify-tab">
                     <br>
-                    <h3>Modificar Informacion de padres</h3>
+                    <h3>Modificar informacion de alumnos</h3>
                     <div class="col-md-12">
                         <table class="table table-bordered">
                             <thead>
@@ -156,18 +155,17 @@ include("DB/db.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Direccion</th>
-                                    <th>CP</th>
-                                    <th>Fecha de nacimiento</th>
-                                    <th>RFC</th>
-                                    <th>Regimen fiscal</th>
+                                    <th>Edad</th>
+                                    <th>CURP</th>
+                                    <th>NivelEducativo</th>
+                                    <th>Grado</th>
                                     <!-- <th>Matricula</th> -->
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM padres";
+                                $query = "SELECT * FROM alumnos";
                                 $result_tasks = mysqli_query($conn, $query);
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -176,11 +174,11 @@ include("DB/db.php");
                                     <td><?php echo $row['Nombre']; ?></td>
                                     <td><?php echo $row['ApellidoP']; ?></td>
                                     <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Direccion']; ?></td>
-                                    <td><?php echo $row['CP']; ?></td>
                                     <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['RFC']; ?></td>
-                                    <td><?php echo $row['RegimenFiscal']; ?></td>
+                                    <td><?php echo $row['CURP']; ?></td>
+                                    <td><?php echo $row['NivelEducativo']; ?></td>
+                                    <td><?php echo $row['Grado']; ?></td>
+                                    <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                     <td>
                                         <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
                                             Modificar
@@ -195,7 +193,7 @@ include("DB/db.php");
 
                 <div class="tab-pane fade" id="delete" role="tabpanel" aria-labelledby="delete-tab">
                     <br>
-                    <h3>Dar de baja padres</h3>
+                    <h3>Dar de baja alumnos</h3>
                     <div class="col-md-12">
                         <table class="table table-bordered">
                             <thead>
@@ -204,31 +202,30 @@ include("DB/db.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Direccion</th>
-                                    <th>CP</th>
-                                    <th>Fecha de nacimiento</th>
-                                    <th>RFC</th>
-                                    <th>Regimen fiscal</th>
+                                    <th>Edad</th>
+                                    <th>CURP</th>
+                                    <th>NivelEducativo</th>
+                                    <th>Grado</th>
                                     <!-- <th>Matricula</th> -->
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM padres";
+                                $query = "SELECT * FROM alumnos";
                                 $result_tasks = mysqli_query($conn, $query);
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                 <tr>
-                                <td><?php echo $row['id']; ?></td>
+                                    <td><?php echo $row['id']; ?></td>
                                     <td><?php echo $row['Nombre']; ?></td>
                                     <td><?php echo $row['ApellidoP']; ?></td>
                                     <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Direccion']; ?></td>
-                                    <td><?php echo $row['CP']; ?></td>
                                     <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['RFC']; ?></td>
-                                    <td><?php echo $row['RegimenFiscal']; ?></td>
+                                    <td><?php echo $row['CURP']; ?></td>
+                                    <td><?php echo $row['NivelEducativo']; ?></td>
+                                    <td><?php echo $row['Grado']; ?></td>
+                                    <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                     <td>
                                         <a href="BD_CRUD/EliminarA.php?id=<?php echo $row['id'] ?>"
                                             class="btn btn-danger">
