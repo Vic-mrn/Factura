@@ -1,5 +1,5 @@
 <?php include('includes/header.php');
-include("DB/db.php");
+include("procesos/conexion.php");
 ?>
 
 <div class="py-5">
@@ -40,32 +40,60 @@ include("DB/db.php");
                                         <!-- Nombre -->
                                         <div class="col-4">
                                             <label class="form-label">Nombre(s)</label>
-                                            <input type="text" class="form-control" name="nombre" />
+                                            <input type="text" class="form-control" name="nombre"
+                                                placeholder="Juan Carlos" />
                                         </div>
 
                                         <div class="col-4">
                                             <label class="form-label">Apellido paterno</label>
-                                            <input type="text" class="form-control" name="apellidoP" />
+                                            <input type="text" class="form-control" name="apellidoP"
+                                                placeholder="Lopez" />
                                         </div>
 
                                         <div class="col-4">
                                             <label class="form-label">Apellido materno</label>
-                                            <input type="text" class="form-control" name="apellidoM" />
+                                            <input type="text" class="form-control" name="apellidoM"
+                                                placeholder="Perez" />
                                         </div>
 
-                                        <!--  -->
+                                        <!-- Fecha de nacimiento -->
                                         <div class="col-1">
-                                            <label for="inputAddress" class="form-label">Edad</label>
-                                            <input type="date" class="form-control" name="edad"
-                                                min="2009-01-01" required>
+                                            <label for="inputAddress" class="form-label">Dia</label>
+                                            <input type="text" class="form-control" name="dia" placeholder="00" />
                                         </div>
-                                        <div class="col-5">
+
+                                        <div class="col-2">
+                                            <label class="form-label">Mes de nacimiento</label>
+                                            <select class="form-select" name="mes">
+                                                <option selected>Mes</option>
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febrero</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Septiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-1">
+                                            <label for="inputAddress" class="form-label">Año</label>
+                                            <input type="text" class="form-control" name="anio" placeholder="2XXX" />
+                                        </div>
+
+                                        <!-- Curp -->
+                                        <div class="col-4">
                                             <label class="form-label">CURP</label>
                                             <input type="text" class="form-control" name="curp" />
                                         </div>
 
-                                        <!--  -->
-                                        <div class="col-md-3">
+                                        <!-- Nivel educativo -->
+                                        <div class="col-md-4">
                                             <label class="form-label">Nivel educativo</label>
                                             <select class="form-select" name="nivel">
                                                 <option selected>Elige alguna opcion</option>
@@ -75,6 +103,7 @@ include("DB/db.php");
                                             </select>
                                         </div>
 
+                                        <!-- Grado  -->
                                         <div class="col-md-3">
                                             <label class="form-label">Grado</label>
                                             <select class="form-select" name="grado">
@@ -93,7 +122,7 @@ include("DB/db.php");
                                                 name="btnRegistrarAlumno" />
                                         </div>
 
-                                        <?php include('BD_CRUD/InsertarA.php'); ?>
+                                        <?php include('procesos/OperacionesAlumnos.php'); ?>
 
                                     </form>
                                 </div>
@@ -128,14 +157,30 @@ include("DB/db.php");
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                 <tr>
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row['Nombre']; ?></td>
-                                    <td><?php echo $row['ApellidoP']; ?></td>
-                                    <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['CURP']; ?></td>
-                                    <td><?php echo $row['NivelEducativo']; ?></td>
-                                    <td><?php echo $row['Grado']; ?></td>
+                                    <td>
+                                        <?php echo $row['id']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Nombre']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoM']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Edad']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CURP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['NivelEducativo']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Grado']; ?>
+                                    </td>
                                     <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                 </tr>
                                 <?php } ?>
@@ -170,14 +215,30 @@ include("DB/db.php");
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                 <tr>
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row['Nombre']; ?></td>
-                                    <td><?php echo $row['ApellidoP']; ?></td>
-                                    <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['CURP']; ?></td>
-                                    <td><?php echo $row['NivelEducativo']; ?></td>
-                                    <td><?php echo $row['Grado']; ?></td>
+                                    <td>
+                                        <?php echo $row['id']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Nombre']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoM']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Edad']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CURP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['NivelEducativo']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Grado']; ?>
+                                    </td>
                                     <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                     <td>
                                         <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
@@ -217,20 +278,34 @@ include("DB/db.php");
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                 <tr>
-                                    <td><?php echo $row['id']; ?></td>
-                                    <td><?php echo $row['Nombre']; ?></td>
-                                    <td><?php echo $row['ApellidoP']; ?></td>
-                                    <td><?php echo $row['ApellidoM']; ?></td>
-                                    <td><?php echo $row['Edad']; ?></td>
-                                    <td><?php echo $row['CURP']; ?></td>
-                                    <td><?php echo $row['NivelEducativo']; ?></td>
-                                    <td><?php echo $row['Grado']; ?></td>
+                                    <td>
+                                        <?php echo $row['id']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Nombre']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['ApellidoM']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Edad']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CURP']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['NivelEducativo']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['Grado']; ?>
+                                    </td>
                                     <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                     <td>
-                                        <a href="BD_CRUD/EliminarA.php?id=<?php echo $row['id'] ?>"
-                                            class="btn btn-danger">
-                                            Eliminar
-                                        </a>
+                                        <a href="procesos/OperacionesAlumnos.php?id=<?php echo $row['id']; ?>"
+                                            class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -249,8 +324,6 @@ include("DB/db.php");
             </div>
         </div>
     </div>
-
-
 </div>
 </div>
 

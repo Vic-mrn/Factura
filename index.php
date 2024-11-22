@@ -24,24 +24,22 @@
           <div class="col-4 m-auto">
             <div class="card border-0 shadow">
               <div class="card-body">
-                <form method="post" action="">
+                <form method="post">
                   <div class="text-center mt-3">
+                    <img src="img/logo.svg" height="200 px" width="200 px" alt="">
                     <div class="display-6">Inicio de sesion</div>
                   </div>
                   <br />
                   <?php 
-                    include("DB/db.php"); 
-                    include("controlador.php"); 
+                    include("procesos/conexion.php"); 
+                    include("procesos/inicio_sesion.php"); 
                     ?>
-                  <input class="form-control my-2 py-2" name="usuario" placeholder="Usuario"/>
-                  <input class="form-control my-2 py-2" name="contra" placeholder="Contraseña"/>
-                  <div class="text-center mt-3">
+                  <input class="form-control my-4 py-3" name="usuario" placeholder="Usuario"/>
+                  <input type="password" class="form-control  my-4 py-3" name="contra" placeholder="Contraseña"/>
+                  <div class="text-center">
                     <input class="btn btn-primary" name="btnIngresar" type="submit" value="Iniciar sesion">
                     </input>
                     <br>
-                    
-                  
-                    
                   </div>
                 </form>
               </div>

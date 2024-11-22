@@ -13,7 +13,7 @@ if (!empty($_POST["btnIngresar"])) {
 
             header("location:portal.php");
         } else {
-            echo '<div class="alert alert-danger">Datos erroneos, intenta de nuevo</div>';
+            echo '<div class="alert alert-danger">Credenciales incorrectas</div>';
         }
         
     }

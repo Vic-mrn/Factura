@@ -80,7 +80,7 @@
                     <a class="nav-link color" href="#">Historial</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link color" href="logout.php">Cerrar Sesión</a>
+                    <a class="nav-link color" href="index.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </div>

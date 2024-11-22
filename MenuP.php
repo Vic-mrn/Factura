@@ -1,5 +1,5 @@
 <?php include('includes/header.php');
-include("DB/db.php");
+include("procesos/conexion.php");
 ?>
 
 <div class="py-5">
@@ -66,20 +66,43 @@ include("DB/db.php");
                                                 name="cp" />
                                         </div>
 
-                                        <!--  -->
+                                        <!-- Fecha de nacimiento -->
+                                        <div class="col-1">
+                                            <label for="inputAddress" class="form-label">Dia</label>
+                                            <input type="text" class="form-control" name="dia" placeholder="00"/>
+                                        </div>
 
                                         <div class="col-2">
-                                            <label for="birthdate">Fecha de Nacimiento</label>
-                                            <input type="date" class="form-control" name="edad" min="1960-01-01"
-                                                required>
+                                            <label class="form-label">Mes de nacimiento</label>
+                                            <select class="form-select" name="mes">
+                                                <option selected>Mes</option>
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febrero</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Septiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+                                            </select>
                                         </div>
+
+                                        <div class="col-1">
+                                            <label for="inputAddress" class="form-label">Año</label>
+                                            <input type="text" class="form-control" name="anio" placeholder="2XXX"/>
+                                        </div>
+
                                         <div class="col-4">
                                             <label class="form-label">RFC</label>
                                             <input type="text" class="form-control" name="rfc" />
                                         </div>
 
                                         <!--  -->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="form-label">Regimen fiscal</label>
                                             <select class="form-select" name="regimen">
                                                 <option selected>Elige alguna opcion</option>
