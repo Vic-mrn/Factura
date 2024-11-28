@@ -4,41 +4,81 @@ $conn = mysqli_connect(
     'root',
     'con.1234',
     'facturas'
-  ) or die(mysqli_erro($mysqli));
+) or die(mysqli_erro($mysqli));
 
-if (!empty($_POST["btnRegistrarAlumno"])) {
-    if (empty($_POST["nombre"]) or empty($_POST["apellidoP"]) or empty($_POST["apellidoM"]) or empty($_POST["curp"])) {
-        echo '<div class="alert alert-danger">Los campos están vacíos, intenta de nuevo</div>';
-    } else if ($_POST["nivel"] == "Elige alguna opcion" or $_POST["grado"] == "Elige alguna opcion") {
-        echo '<div class="alert alert-danger">Seleccione una opción válida</div>';
-    } else {
-        $usuario = $_POST["nombre"];
-        $apellidoP = $_POST["apellidoP"];
-        $apellidoM = $_POST["apellidoM"];
-        $curp = $_POST["curp"];
-        $nivel = $_POST["nivel"];
-        $grado = $_POST["grado"];
+if (isset($_POST['btnRegistrarAlumno'])) {
+    // Obtener los datos del formulario
+    $nombre = $_POST['nombre'];
+    $apellidoP = $_POST['apellidoP'];
+    $apellidoM = $_POST['apellidoM'];
+    $dia = $_POST['dia'];
+    $mes = $_POST['mes'];
+    $anio = $_POST['anio'];
+    $curp = $_POST['curp'];
+    $nivel = $_POST['nivel'];
+    $grado = $_POST['grado'];
 
-        $insert_alumno = $conn->query("INSERT INTO alumnos (Nombre, apellidoP, apellidoM, CURP, NivelEducativo, Grado) 
-        VALUES ('$usuario', '$apellidoP', '$apellidoM', '$curp', '$nivel', '$grado')");
-
-        echo '<div class="alert alert-success">Registrado correctamente</div>';
+    // Validar que el año sea 2009 o posterior
+    if ($anio < 2009) {
+        echo "El año debe ser 2009 o posterior.";
+        exit;
     }
+
+    // Validar la fecha
+    if (!checkdate($mes, $dia, $anio)) {
+        echo "La fecha de nacimiento no es válida.";
+        exit;
+    }
+
+    $fechaNacimiento = "$anio-$mes-$dia"; // Formato YYYY-MM-DD
+
+    // Guardar en la base de datos
+    $usuario = $_POST["nombre"];
+    $apellidoP = $_POST["apellidoP"];
+    $apellidoM = $_POST["apellidoM"];
+    $curp = $_POST["curp"];
+    $nivel = $_POST["nivel"];
+    $grado = $_POST["grado"];
+
+    $insert_alumno = $conn->query("INSERT INTO alumnos (Nombre, apellidoP, apellidoM, FechaN, CURP, NivelEducativo, Grado) 
+        VALUES ('$usuario', '$apellidoP', '$apellidoM', '$fechaNacimiento','$curp', '$nivel', '$grado')");
+
+
+    echo '<div class="alert alert-success">Registrado correctamente</div>';
 }
 
-if(isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $delete_alumno = $conn->query("DELETE FROM alumnos WHERE id = $id");
-    // $result = mysqli_query($conn, $query);
-    // if(!$result) {
-    //   die("Query Failed.");
-    // }
-  
-    // $_SESSION['message'] = 'Task Removed Successfully';
-    // $_SESSION['message_type'] = 'danger';
-    header('Location: ../MenuA.php');
-  }
+if (isset($_POST['btnModificarAlumno'])) {
+
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $apellidoP = $_POST['apellidoP'];
+    $apellidoM = $_POST['apellidoM'];
+    $fechaN = $_POST['fechaN'];
+    $curp = $_POST['curp'];
+    $nivelEducativo = $_POST['nivel'];
+    $grado = $_POST['grado'];
+
+    $query = "UPDATE alumnos SET 
+                    Nombre = '$nombre',
+                    ApellidoP = '$apellidoP',
+                    ApellidoM = '$apellidoM',
+                    FechaN = '$fechaN',
+                    CURP = '$curp',
+                    NivelEducativo = '$nivelEducativo',
+                    Grado = '$grado'
+                  WHERE id = $id";
+
+    if (mysqli_query($conn, $query)) {
+        echo '<div class="alert alert-success">Modificado correctamente</div>';
+    } 
+}
+
+
+if (isset($_POST['btnEliminarAlumno'])) {
+    $id = $_POST['id'];
+    $delete_alumno = $conn->query("DELETE FROM alumnos WHERE id = '$id'");
+
+    echo '<div class="alert alert-success">Eliminado correctamente</div>';
+}
 
 ?>
-
-

@@ -2,23 +2,12 @@ CREATE DATABASE facturas;
 
 use facturas;
 
-CREATE TABLE clientes(
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  Nombre VARCHAR(255) NOT NULL,
-  ApellidoP VARCHAR(255) NOT NULL,
-  ApellidoM VARCHAR(255) NOT NULL,
-  Edad int(4),
-  CURP VARCHAR(19) NOT NULL,
-  RFC VARCHAR(19) NOT NULL,
-  FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE alumnos(
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   Nombre VARCHAR(255) NOT NULL,
   ApellidoP VARCHAR(255) NOT NULL,
   ApellidoM VARCHAR(255) NOT NULL,
-  Edad int(4),
+  FechaN int(4),
   CURP VARCHAR(19) NOT NULL,
   NivelEducativo VARCHAR(19) NOT NULL,
   Grado VARCHAR(19) NOT NULL,
@@ -33,7 +22,7 @@ CREATE TABLE padres(
   ApellidoM VARCHAR(255) NOT NULL,
   Direccion VARCHAR(255) NOT NULL,
   CP int(10),
-  Edad int(4),
+  FechaN int(20),
   RFC VARCHAR(19) NOT NULL,
   RegimenFiscal VARCHAR(200) NOT NULL,
   FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -56,33 +45,9 @@ CREATE TABLE Bitacora(
   Hora TIME NOT NULL DEFAULT CURRENT_TIME
 );
 
---DAR DE ALTA USUARIOS, DIRECTOR Y CONTADOR
 INSERT INTO Administrativos (Usuario, Contrasenia, NombreCompleto, Permisos) 
 VALUES 
 ('Director', 'admin1234', 'Luis Gomez Hernandez', 'admin'),
 ('Contador', 'user1234', 'Luis Perez Prado', 'usuario');
 
 
-CREATE TABLE Factura(
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  Nombre VARCHAR(255) NOT NULL,
-  ApellidoP VARCHAR(255) NOT NULL,
-  ApellidoM VARCHAR(255) NOT NULL,
-  Edad int(4),
-  RFC VARCHAR(19) NOT NULL,
-  RegimenFiscal VARCHAR(19) NOT NULL,
-  CodigoPostal VARCHAR(19) NOT NULL,
-  FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE DatosEscuela(
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  Clave VARCHAR(255) NOT NULL,
-  ApellidoP VARCHAR(255) NOT NULL,
-  ApellidoM VARCHAR(255) NOT NULL,
-  Edad int(4),
-  RFC VARCHAR(19) NOT NULL,
-  RegimenFiscal VARCHAR(19) NOT NULL,
-  CodigoPostal VARCHAR(19) NOT NULL,
-  FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);

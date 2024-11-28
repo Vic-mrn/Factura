@@ -57,6 +57,19 @@ include("procesos/conexion.php");
                                                 placeholder="Perez" />
                                         </div>
 
+                                        <!-- Direccion -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Direccion</label>
+                                            <input type="text"  class="form-control" placeholder="Ingresa tu direccion"
+                                                name="direccion" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="inputPassword4" class="form-label">Codigo postal</label>
+                                            <input type="text"  class="form-control" placeholder="Ingresa tu codigo postal"
+                                                name="cp" />
+                                        </div>
+
                                         <!-- Fecha de nacimiento -->
                                         <div class="col-1">
                                             <label for="inputAddress" class="form-label">Dia</label>
@@ -86,44 +99,30 @@ include("procesos/conexion.php");
 
                                         <div class="col-1">
                                             <label for="inputAddress" class="form-label">Año</label>
-                                            <input type="text" class="form-control" name="anio" placeholder="2009"
+                                            <input type="text" class="form-control" name="anio" placeholder="1970"
                                                 maxlength="4" pattern="\d{4}"
                                                 title="Solo se permiten números (exactamente 4 dígitos)" required />
                                         </div>
 
-                                        <!-- Curp -->
+                                        <!-- RFC -->
                                         <div class="col-4">
-                                            <label class="form-label">CURP</label>
+                                            <label class="form-label">RFC</label>
                                             <input type="text" class="form-control" name="curp" />
                                         </div>
 
-                                        <!-- Nivel educativo -->
+                                        <!--  -->
                                         <div class="col-md-4">
-                                            <label class="form-label">Nivel educativo</label>
-                                            <select class="form-select" name="nivel">
+                                            <label class="form-label">Regimen fiscal</label>
+                                            <select class="form-select" name="regimen">
                                                 <option selected>Elige alguna opcion</option>
-                                                <option>Preescolar</option>
-                                                <option>Primaria</option>
-                                                <option>Secundaria</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Grado  -->
-                                        <div class="col-md-3">
-                                            <label class="form-label">Grado</label>
-                                            <select class="form-select" name="grado">
-                                                <option selected>Elige alguna opcion</option>
-                                                <option>1ro</option>
-                                                <option>2do</option>
-                                                <option>3ro</option>
-                                                <option>4to</option>
-                                                <option>5to</option>
-                                                <option>6to</option>
+                                                <option>Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+                                                <option>Simplificado de Confianza</option>
+                                                <option>Persona Física con Actividad Empresarial</option>
                                             </select>
                                         </div>
 
                                         <div class="col-12">
-                                            <input type="submit" class="btn btn-primary" value="Registrar alumno"
+                                            <input type="submit" class="btn btn-primary" value="Registrar padre"
                                                 name="btnRegistrarAlumno" />
                                         </div>
                                     </form>
