@@ -1,6 +1,4 @@
-<?php include('includes/header.php');
-include("procesos/conexion.php");
-?>
+<?php include('includes/header.php');?>
 
 <div class="py-5">
     <div class="container rounded-shadow">

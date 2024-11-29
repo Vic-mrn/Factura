@@ -1,12 +1,24 @@
-<?php include('includes/header.php');
-include("procesos/conexion.php");
-?>
+<?php include('includes/header.php'); ?>
+
 
 <div class="py-5">
     <div class="container rounded-shadow">
-
+        <?php include('procesos/OperacionesPadres.php'); ?>
         <div class="container mt-4">
-            <?php include('procesos/OperacionesAlumnos.php'); ?>
+
+            <!-- Mensajes -->
+            <?php if (isset($_SESSION['Mensaje'])) { ?>
+            <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
+                <?= $_SESSION['Mensaje']?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php session_unset(); } ?>
+
+
+
+
             <!-- Pestañas -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -60,14 +72,14 @@ include("procesos/conexion.php");
                                         <!-- Direccion -->
                                         <div class="col-md-6">
                                             <label class="form-label">Direccion</label>
-                                            <input type="text"  class="form-control" placeholder="Ingresa tu direccion"
+                                            <input type="text" class="form-control" placeholder="Ingresa tu direccion"
                                                 name="direccion" />
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-2">
                                             <label for="inputPassword4" class="form-label">Codigo postal</label>
-                                            <input type="text"  class="form-control" placeholder="Ingresa tu codigo postal"
-                                                name="cp" />
+                                            <input type="text" class="form-control"
+                                                placeholder="Ingresa tu codigo postal" name="cp" />
                                         </div>
 
                                         <!-- Fecha de nacimiento -->
@@ -107,7 +119,7 @@ include("procesos/conexion.php");
                                         <!-- RFC -->
                                         <div class="col-4">
                                             <label class="form-label">RFC</label>
-                                            <input type="text" class="form-control" name="curp" />
+                                            <input type="text" class="form-control" name="rfc" />
                                         </div>
 
                                         <!--  -->
@@ -115,15 +127,16 @@ include("procesos/conexion.php");
                                             <label class="form-label">Regimen fiscal</label>
                                             <select class="form-select" name="regimen">
                                                 <option selected>Elige alguna opcion</option>
-                                                <option>Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
-                                                <option>Simplificado de Confianza</option>
-                                                <option>Persona Física con Actividad Empresarial</option>
+                                                <option value="1">Sueldos y Salarios e Ingresos Asimilados a Salarios
+                                                </option>
+                                                <option value="2">Simplificado de Confianza</option>
+                                                <option value="3">Persona Física con Actividad Empresarial</option>
                                             </select>
                                         </div>
 
                                         <div class="col-12">
                                             <input type="submit" class="btn btn-primary" value="Registrar padre"
-                                                name="btnRegistrarAlumno" />
+                                                name="btnRegistrarPadre" />
                                         </div>
                                     </form>
                                 </div>
@@ -144,16 +157,16 @@ include("procesos/conexion.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Edad</th>
-                                    <th>CURP</th>
-                                    <th>NivelEducativo</th>
-                                    <th>Grado</th>
-                                    <!-- <th>Matricula</th> -->
+                                    <th>Direccion</th>
+                                    <th>Codigo Postal</th>
+                                    <th>Fecha de nacimiento</th>
+                                    <th>RFC</th>
+                                    <th>Regimen Fiscal</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM alumnos";
+                                $query = "SELECT * FROM padres";
                                 $result_tasks = mysqli_query($conn, $query);
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -171,18 +184,20 @@ include("procesos/conexion.php");
                                         <?php echo $row['ApellidoM']; ?>
                                     </td>
                                     <td>
+                                        <?php echo $row['Direccion']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CP']; ?>
+                                    </td>
+                                    <td>
                                         <?php echo $row['FechaN']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['CURP']; ?>
+                                        <?php echo $row['RFC']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['NivelEducativo']; ?>
+                                        <?php echo $row['RegimenFiscal']; ?>
                                     </td>
-                                    <td>
-                                        <?php echo $row['Grado']; ?>
-                                    </td>
-                                    <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                 </tr>
                                 <?php } ?>
                             </tbody>
@@ -201,11 +216,11 @@ include("procesos/conexion.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Edad</th>
-                                    <th>CURP</th>
-                                    <th>NivelEducativo</th>
-                                    <th>Grado</th>
-                                    <!-- <th>Matricula</th> -->
+                                    <th>Direccion</th>
+                                    <th>Codigo Postal</th>
+                                    <th>Fecha de nacimiento</th>
+                                    <th>RFC</th>
+                                    <th>Regimen Fiscal</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -229,32 +244,34 @@ include("procesos/conexion.php");
                                         <?php echo $row['ApellidoM']; ?>
                                     </td>
                                     <td>
+                                        <?php echo $row['Direccion']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CP']; ?>
+                                    </td>
+                                    <td>
                                         <?php echo $row['FechaN']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['CURP']; ?>
+                                        <?php echo $row['RFC']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['NivelEducativo']; ?>
+                                        <?php echo $row['RegimenFiscal']; ?>
                                     </td>
-                                    <td>
-                                        <?php echo $row['Grado']; ?>
-                                    </td>
-                                    <!-- <td><?php echo $row['Matricula']; ?></td> -->
                                     <td>
                                         <button class="btn btn-primary" onclick="showForm(
                                                 '<?php echo $row['id']; ?>',
                                                 '<?php echo $row['Nombre']; ?>',
                                                 '<?php echo $row['ApellidoP']; ?>',
                                                 '<?php echo $row['ApellidoM']; ?>',
+                                                '<?php echo $row['Direccion']; ?>',
+                                                '<?php echo $row['CP']; ?>',
                                                 '<?php echo $row['FechaN']; ?>',
-                                                '<?php echo $row['CURP']; ?>',
-                                                '<?php echo $row['NivelEducativo']; ?>',
-                                                '<?php echo $row['Grado']; ?>'
+                                                '<?php echo $row['RFC']; ?>',
+                                                '<?php echo $row['RegimenFiscal']; ?>'
                                             )">
                                             Modificar
                                         </button>
-
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -308,7 +325,8 @@ include("procesos/conexion.php");
                                     <option>6to</option>
                                 </select>
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Modificar alumno" name="btnModificarAlumno"/>
+                            <input type="submit" class="btn btn-primary" value="Modificar alumno"
+                                name="btnModificarAlumno" />
                             <button type="button" class="btn btn-secondary" onclick="hideForm()">Cancelar</button>
                         </form>
                     </div>
@@ -325,17 +343,16 @@ include("procesos/conexion.php");
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
-                                    <th>Edad</th>
-                                    <th>CURP</th>
-                                    <th>NivelEducativo</th>
-                                    <th>Grado</th>
-                                    <!-- <th>Matricula</th> -->
-                                    <th>Accion</th>
+                                    <th>Direccion</th>
+                                    <th>Codigo Postal</th>
+                                    <th>Fecha de nacimiento</th>
+                                    <th>RFC</th>
+                                    <th>Regimen Fiscal</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM alumnos";
+                                $query = "SELECT * FROM padres";
                                 $result_tasks = mysqli_query($conn, $query);
 
                                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -353,39 +370,31 @@ include("procesos/conexion.php");
                                         <?php echo $row['ApellidoM']; ?>
                                     </td>
                                     <td>
+                                        <?php echo $row['Direccion']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['CP']; ?>
+                                    </td>
+                                    <td>
                                         <?php echo $row['FechaN']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['CURP']; ?>
+                                        <?php echo $row['RFC']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['NivelEducativo']; ?>
+                                        <?php echo $row['RegimenFiscal']; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['Grado']; ?>
-                                    </td>
-                                    <!-- <td><?php echo $row['Matricula']; ?></td> -->
-                                    <td>
-                                        <!-- <a href="procesos/OperacionesAlumnos.php?id=<?php echo $row['id']; ?>"
-                                            class="btn btn-danger">Eliminar</a> -->
                                         <form method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />                               
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
                                             <input type="submit" class="btn btn-danger" value="Eliminar"
-                                                name="btnEliminarAlumno" />
+                                                name="btnEliminarPadre" />
                                         </form>
                                     </td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <?php if (isset($_SESSION['message'])) { ?>
-                        <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show"
-                            role="alert">
-                            <?= $_SESSION['message']?>
-
-                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php session_unset(); } ?>
                     </div>
                 </div>
             </div>

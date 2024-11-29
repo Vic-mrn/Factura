@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $conn = mysqli_connect(
     'localhost',
     'root',
@@ -8,48 +6,50 @@ $conn = mysqli_connect(
     'facturas'
 ) or die(mysqli_erro($mysqli));
 
-if (isset($_POST['btnRegistrarAlumno'])) {
+if (isset($_POST['btnRegistrarPadre'])) {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
     $apellidoP = $_POST['apellidoP'];
     $apellidoM = $_POST['apellidoM'];
+    $apellidoM = $_POST['direccion'];
+    $apellidoM = $_POST['cp'];
     $dia = $_POST['dia'];
     $mes = $_POST['mes'];
     $anio = $_POST['anio'];
-    $curp = $_POST['curp'];
-    $nivel = $_POST['nivel'];
-    $grado = $_POST['grado'];
+    $curp = $_POST['rfc'];
+    $nivel = $_POST['regimen'];
 
-    // Validar que el año sea 2009 o posterior
-    if ($anio < 2009) {
-        echo "El año debe ser 2009 o posterior.";
-        exit;
+    // Validar que el año sea 1970 o posterior
+    if ($anio < 1970) {
+        $_SESSION['Mensaje'] = 'El año debe ser 1970 o posterior.';
+        $_SESSION['message_type'] = 'success';
+        header('Location: MenuPP.php');
     }
 
     // Validar la fecha
     if (!checkdate($mes, $dia, $anio)) {
-        echo "La fecha de nacimiento no es válida.";
-        exit;
+        echo '<div class="alert alert-success">La fecha de nacimiento no es válida.</div>';
+        exit();
     }
-
-    $fechaNacimiento = "$anio-$mes-$dia"; // Formato YYYY-MM-DD
 
     // Guardar en la base de datos
     $usuario = $_POST["nombre"];
     $apellidoP = $_POST["apellidoP"];
     $apellidoM = $_POST["apellidoM"];
-    $curp = $_POST["curp"];
-    $nivel = $_POST["nivel"];
-    $grado = $_POST["grado"];
+    $direccion = $_POST["direccion"];
+    $cp = $_POST["cp"];
+    $fechaNacimiento = "$anio-$mes-$dia"; // Formato YYYY-MM-DD
+    $rfc = $_POST["rfc"];
+    $regimen = $_POST["regimen"];
 
-    $insert_alumno = $conn->query("INSERT INTO alumnos (Nombre, apellidoP, apellidoM, FechaN, CURP, NivelEducativo, Grado) 
-        VALUES ('$usuario', '$apellidoP', '$apellidoM', '$fechaNacimiento','$curp', '$nivel', '$grado')");
+    $insert_padre = $conn->query("INSERT INTO padres (Nombre, apellidoP, apellidoM, Direccion, CP, FechaN, RFC, RegimenFiscal) 
+        VALUES ('$usuario', '$apellidoP', '$apellidoM', '$direccion', '$cp', '$fechaNacimiento','$rfc', '$regimen')");
 
 
     echo '<div class="alert alert-success">Registrado correctamente</div>';
 }
 
-if (isset($_POST['btnModificarAlumno'])) {
+if (isset($_POST['btnModificarPadre'])) {
 
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
@@ -72,13 +72,13 @@ if (isset($_POST['btnModificarAlumno'])) {
 
     if (mysqli_query($conn, $query)) {
         echo '<div class="alert alert-success">Modificado correctamente</div>';
-    } 
+    }
 }
 
 
-if (isset($_POST['btnEliminarAlumno'])) {
+if (isset($_POST['btnEliminarPadre'])) {
     $id = $_POST['id'];
-    $delete_alumno = $conn->query("DELETE FROM alumnos WHERE id = '$id'");
+    $delete_padre = $conn->query("DELETE FROM padres WHERE id = '$id'");
 
     echo '<div class="alert alert-success">Eliminado correctamente</div>';
 }
